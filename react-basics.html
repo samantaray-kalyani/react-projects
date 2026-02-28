@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clock</title>
+    <style>
+      body{
+        margin-top: 0;
+        margin-bottom:0;
+      }
+
+      .container-div{
+        background-color: rgb(200,200,200);
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+      }
+      .design{
+        background-color: rgb(25, 135, 84);
+        color: white;
+        padding: 10px 15px;       
+        border: none;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>  
+   
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel"> 
+    function App() {
+      const [count, setCount] = React.useState(0);
+      const buttonRef = React.useRef();
+
+     function increaseCount() {
+        setCount(count + 1);
+      }
+      
+     function resetCount() {
+        setCount(0);
+      }
+
+    function autoClick() {
+      setInterval(() => {
+        const buttonElem = buttonRef.current;
+        if (buttonElem) {
+          buttonElem.click();
+        }
+      }, 10000);
+    }    
+
+    return(
+      <div className="container-div">
+        <button 
+          className = "design"
+          onClick={increaseCount}
+          ref={buttonRef}
+        >
+          Clicked {count} {count === 1 ? 'time' : 'times'}
+        </button>
+        <button 
+          className="design"
+          onClick={resetCount}>
+          Reset
+        </button>
+        <button 
+          className= "design"
+          onClick={autoClick}>
+          Auto Click
+        </button>
+      </div>
+    );
+   }
+    
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App />);   
+    </script>
+  </body>
+</html>
+
