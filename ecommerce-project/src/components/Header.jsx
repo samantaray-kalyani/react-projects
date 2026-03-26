@@ -6,7 +6,7 @@ import MobileLogoWhite from '../assets/images/icons/mobile-logo-white.png';
 
 import './header.css';
 
-export function Header({ cart }) {
+export default function Header({ cart }) {
  let totalQuantity = 0;
 
  cart.forEach((cartItem) => {
