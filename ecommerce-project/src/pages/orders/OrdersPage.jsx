@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import Header from '../../components/Header';
+import  Header  from '../../components/Header';
 import './OrdersPage.css';
 import { OrdersGrid } from './OrdersGrid';
 
@@ -18,7 +18,7 @@ export function OrdersPage({ cart }) {
   return (
     <>
       <title>Orders</title>
-      <a rel="icon" type="image/svg+xml" href="orders-favicon.png" />
+      <link rel="icon" type="image/svg+xml" href="orders-favicon.png" />
 
       <Header cart={cart} />
 
