@@ -14,15 +14,17 @@ export function CheckoutHeader({ cart }) {
     <div className="checkout-header">
       <div className="header-content">
         <div className="checkout-header-left-section">
-          <a to="/">
+          <a href="/">
             <img className="logo" src={Logo} />
             <img className="mobile-logo" src={MobileLogo} />
           </a>
         </div>
 
         <div className="checkout-header-middle-section">
-          Checkout (<a className="return-to-home-link"
-            to="/">{totalQuantity} items</a>)
+          Checkout (
+            <a className="return-to-home-link"
+            href="/">{totalQuantity} items</a>
+            )
         </div>
 
         <div className="checkout-header-right-section">
