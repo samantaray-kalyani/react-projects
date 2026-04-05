@@ -12,17 +12,25 @@ export function CheckoutPage({ cart, loadCart }) {
 
   useEffect(() => {
     const fetchCheckoutData = async () => {
-      let response = await axios.get(
+      const response = await axios.get(
         '/api/delivery-options?expand=estimatedDelieryTime'
       );
       setDeliveryOptions(response.data);
-
-      response = await axios.get('/api/payment-summary');
-      setPaymentSummary(response.data);
     };
 
     fetchCheckoutData();
+  }, []);
+
+  //This useEffect will run every time the cart changes.
+  useEffect(() => {
+    const fetchPaymentSummary = async () => {
+      const response = await axios.get('/api/payment-summary');
+      setPaymentSummary(response.data);
+    };
+
+    fetchPaymentSummary();
   }, [cart]);
+
   return (
     <>
       <title>Checkout</title>
