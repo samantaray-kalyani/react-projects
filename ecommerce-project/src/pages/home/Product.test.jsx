@@ -7,11 +7,11 @@ import { Product } from './Product';
 vi.mock('axios');
 
 describe('Product component', () => {
-    let product;
-    let loadCart;     
+  let product;
+  let loadCart;
 
-    beforeEach(() => {
-      product = {
+  beforeEach(() => {
+    product = {
       id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
       image: "images/products/athletic-cotton-socks-6-pairs.jpg",
       name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
@@ -24,9 +24,9 @@ describe('Product component', () => {
     };
 
     loadCart = vi.fn();
-    });
-    
-    it('displays the product details correctly', () => {
+  });
+
+  it('displays the product details correctly', () => {
     render(<Product product={product} loadCart={loadCart} />);
 
     expect(
@@ -50,7 +50,7 @@ describe('Product component', () => {
     ).toBeInTheDocument();
   });
 
-  it('adds a product to the cart', async () => {    
+  it('adds a product to the cart', async () => {
     render(<Product product={product} loadCart={loadCart} />);
 
     const user = userEvent.setup();
@@ -65,4 +65,11 @@ describe('Product component', () => {
     );
     expect(loadCart).toHaveBeenCalled();
   });
+
+  it('selects a quantity' , () => {
+    render(<Product product={product} loadCart={loadCart} />);
+
+  const quantitySelector = screen.getByTestId('product-quantity-selector');
+  expect(quantitySelector).toHaveValue('1');
+});
 });
