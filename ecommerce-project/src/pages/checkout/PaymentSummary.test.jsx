@@ -81,6 +81,6 @@ describe('PaymentSummary component', () => {
 
     expect(axios.post).toHaveBeenCalledWith('/api/orders');
     expect(loadCart).toHaveBeenCalled();
-    expect(screen.getByTestId('url-path')).toHaveTextCotent('/orders');
+    expect(screen.getByTestId('url-path')).toHaveTextContent('/orders');
   });
 });
