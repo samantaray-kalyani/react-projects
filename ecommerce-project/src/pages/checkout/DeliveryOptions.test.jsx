@@ -42,12 +42,11 @@ describe('DeliveryOptions component', () => {
 
   it('renders delivery options correctly', () => {
     render(
-      <DeliveryOptions
-        cartItem={cartItem}
-        deliveryOptions={deliveryOptions}
-        loadCart={loadCart}
-      />
-    );
+    <DeliveryOptions 
+    cartItem={cartItem} 
+    deliveryOptions={deliveryOptions} 
+    loadCart={loadCart} />
+  );
 
     expect(screen.getByText('Choose a delivery option:')).toBeInTheDocument();
 
@@ -55,18 +54,22 @@ describe('DeliveryOptions component', () => {
     expect(deliveryOptionElems.length).toBe(3);
 
     expect(deliveryOptionElems[0]).toHaveTextContent('Sunday, May 18');
+
     expect(deliveryOptionElems[0]).toHaveTextContent('FREE Shipping');
     expect(
       within(deliveryOptionElems[0]).getByTestId('delivery-option-input').checked
     ).toBe(false);
 
     expect(deliveryOptionElems[1]).toHaveTextContent('Wednesday, May 14');
+
     expect(deliveryOptionElems[1]).toHaveTextContent('$4.99 - Shipping');
     expect(
+
       within(deliveryOptionElems[1]).getByTestId('delivery-option-input').checked
     ).toBe(true);
 
     expect(deliveryOptionElems[2]).toHaveTextContent('Monday, May 12');
+
     expect(deliveryOptionElems[2]).toHaveTextContent('$9.99 - Shipping');
     expect(
       within(deliveryOptionElems[2]).getByTestId('delivery-option-input').checked

@@ -12,7 +12,7 @@ export function DeliveryOptions({ cartItem, deliveryOptions, loadCart }) {
         let priceString = 'FREE Shipping';
 
         if (deliveryOption.priceCents > 0) {
-          priceString = `${formatMoney(deliveryOption.priceCents)} - shipping`;
+          priceString = `${formatMoney(deliveryOption.priceCents)} - Shipping`;
         }
 
         const updateDeliveryOption = async () => {
@@ -24,11 +24,14 @@ export function DeliveryOptions({ cartItem, deliveryOptions, loadCart }) {
 
         return (
           <div key={deliveryOption.id} className="delivery-option"
-            onClick={updateDeliveryOption}>
+            onClick={updateDeliveryOption}
+            data-testid="delivery-option">
             <input type="radio" checked={deliveryOption.id === cartItem.deliveryOptionId}
               onChange={() => {}}
               className="delivery-option-input"
-              name={`delivery-option-${cartItem.productId}`} />
+              name={`delivery-option-${cartItem.productId}`}
+              data-testid="delivery-option-input" 
+            />
             <div>
               <div className="delivery-option-date">
                 {dayjs(deliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
