@@ -10,7 +10,7 @@ describe('OrdersPage component', () => {
   let cart;
   let orders;
 
-beforeEach(() => {
+  beforeEach(() => {
     cart = [{
       productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
       quantity: 2,
@@ -96,7 +96,7 @@ beforeEach(() => {
     //Check the details of the first order.
     expect(
       within(orderContainers[0]).getByTestId('order-date')).toHaveTextContent('August 12');
-      expect(within(orderContainers[0]).getByTestId('order-total')).toHaveTextContent('$35.06');
+    expect(within(orderContainers[0]).getByTestId('order-total')).toHaveTextContent('$35.06');
     expect(
       within(orderContainers[0]).getByTestId('order-id')
     ).toHaveTextContent('27cba69d-4c3d-4098-b42d-ac7fa62b7664');

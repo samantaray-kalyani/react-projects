@@ -2,10 +2,10 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
-import  Header  from '../components/Header';
+import Header from '../components/Header';
 import './TrackingPage.css';
 
-export function TrackingPage( {cart}) {
+export function TrackingPage({ cart }) {
   const { orderId, productId } = useParams();
   const [order, setOrder] = useState(null);
 
@@ -21,28 +21,28 @@ export function TrackingPage( {cart}) {
   if (!order) {
     return null;
   }
-   
+
   const orderProduct = order.products.find((orderProduct) => {
     return orderProduct.productId === productId;
-  });  
+  });
 
   const totalDeliveryTimeMs = orderProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
-  const timePassedMs = dayjs().valueOf() -order.orderTimeMs;
+  const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
 
-  let deliveryPercent = (timePassedMs / totalDeliveryTimeMs ) * 100;
-    if (deliveryPercent > 100) {
-      deliveryPercent = 100;
-    }    
+  let deliveryPercent = (timePassedMs / totalDeliveryTimeMs) * 100;
+  if (deliveryPercent > 100) {
+    deliveryPercent = 100;
+  }
 
-    const isPreparing = deliveryPercent < 33;
-    const isShipped = deliveryPercent >= 33 && deliveryPercent < 100;
-    const isDelivered = deliveryPercent === 100;
+  const isPreparing = deliveryPercent < 33;
+  const isShipped = deliveryPercent >= 33 && deliveryPercent < 100;
+  const isDelivered = deliveryPercent === 100;
   return (
     <>
-     <title>Tracking</title>
-     <link rel="icon" type="image/svg+xml" href="tracking-favicon.png" />
+      <title>Tracking</title>
+      <link rel="icon" type="image/svg+xml" href="tracking-favicon.png" />
 
-      <Header cart={cart}/>
+      <Header cart={cart} />
 
       <div className="tracking-page">
         <div className="order-tracking">
@@ -51,7 +51,7 @@ export function TrackingPage( {cart}) {
           </a>
 
           <div className="delivery-date">
-           {deliveryPercent >= 100 ? 'Delivered on' : 'Arriving on'}
+            {deliveryPercent >= 100 ? 'Delivered on' : 'Arriving on'}
             {dayjs(orderProduct.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
           </div>
 
@@ -79,14 +79,13 @@ export function TrackingPage( {cart}) {
 
           <div className="progress-bar-container">
             <div className="progress-bar"
-              style={{ width: `${deliveryPercent}%`}}
+              style={{ width: `${deliveryPercent}%` }}
             ></div>
           </div>
         </div>
       </div>
     </>
   );
-  
+
 }
 
-  
